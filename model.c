@@ -10,10 +10,10 @@ typedef struct Model {
 } Model;
 
 double set[][3] = {
-    {0,0,1},
-    {0,1,0},
-    {1,0,0},
-    {1,1,1},
+    {0,0,0},
+    {0,1,1},
+    {1,0,1},
+    {1,1,0},
 };
 
 const unsigned int set_len = 4;
