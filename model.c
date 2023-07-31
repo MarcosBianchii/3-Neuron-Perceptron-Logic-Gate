@@ -227,6 +227,29 @@ double new_param() {
     return (double)rand() / (double)RAND_MAX;
 }
 
+size_t train(Model *m) {
+    double learning_rate = 10e-2;
+    double eps = 10e-5;
+    size_t max_iter = 10e+5;
+    size_t iters = 0;
+    double c = eps;
+
+    do {
+        m->u[0] -= cost_der_u0(*m) * learning_rate;
+        m->u[1] -= cost_der_u1(*m) * learning_rate;
+        m->u[2] -= cost_der_u2(*m) * learning_rate;
+        m->v[0] -= cost_der_v0(*m) * learning_rate;
+        m->v[1] -= cost_der_v1(*m) * learning_rate;
+        m->v[2] -= cost_der_v2(*m) * learning_rate;
+        m->w[0] -= cost_der_w0(*m) * learning_rate;
+        m->w[1] -= cost_der_w1(*m) * learning_rate;
+        m->w[2] -= cost_der_w2(*m) * learning_rate;
+        print_params_cost(*m, c);
+    } while ((c = cost(*m)) > eps && ++iters != max_iter);
+
+    return iters;
+}
+
 int main() {
     srand(time(0));
     Model m = {
@@ -235,28 +258,11 @@ int main() {
         .w = {new_param(), new_param(), new_param()},
     };
  
-    double learning_rate = 10e-2;
-    double eps = 10e-5;
-    size_t max_iter = 10e+5;
-    size_t iters = 0;
-    double c = eps;
-
-    do {
-        m.u[0] -= cost_der_u0(m) * learning_rate;
-        m.u[1] -= cost_der_u1(m) * learning_rate;
-        m.u[2] -= cost_der_u2(m) * learning_rate;
-        m.v[0] -= cost_der_v0(m) * learning_rate;
-        m.v[1] -= cost_der_v1(m) * learning_rate;
-        m.v[2] -= cost_der_v2(m) * learning_rate;
-        m.w[0] -= cost_der_w0(m) * learning_rate;
-        m.w[1] -= cost_der_w1(m) * learning_rate;
-        m.w[2] -= cost_der_w2(m) * learning_rate;
-        print_params_cost(m, c);
-    } while ((c = cost(m)) > eps && ++iters != max_iter);
+    size_t iters = train(&m);
 
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     for (int i = 0; i < set_len; i++)
-        printf("%.0f | %.0f = %lf\n", set[i][0], set[i][1], pred(m, set[i][0], set[i][1]));
+        printf("%.0f ^ %.0f = %lf\n", set[i][0], set[i][1], pred(m, set[i][0], set[i][1]));
     printf("Iters: %lu\n", iters);
 
     return 0;
