@@ -1,5 +1,5 @@
-# 3-Neuron Perceptron Logic Gate
-The model uses 3-neurons activated by a sigmoid function to learn any logical gate. The model is trained using backpropagation and gradient descent.
+# Multi-Layer Perceptron Logic Gate
+The model uses 3 neurons each activated by a sigmoid function to learn any logical gate. The model is trained using backpropagation and gradient descent.
 
 ## Compile and Run
 ```
