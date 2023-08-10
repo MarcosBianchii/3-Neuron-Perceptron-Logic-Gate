@@ -9,7 +9,7 @@ $ ./build.sh
 The truth table in `model.c` can be changed to any logic gate. The model will learn the behavior of the gate and print the results to the console.
 
 ## XOR Problem
-The model has the ability to learn the behavior of an XOR gate. The XOR gate is defined as:
+The model has the ability to learn the behavior of a XOR gate. The XOR gate is defined as:
 
 | x1 | x2 | y |
 |----|----|---|
