@@ -1,5 +1,5 @@
 # Multi-Layer Perceptron Logic Gate
-The model uses 3 neurons each activated by a sigmoid function to learn any logical gate.
+The model uses 3 neurons each activated by a sigmoid function to learn any logical gate. The point of this project was to learn how to implement the math behind a neural network.
 
 ## Compile and Run
 ```
@@ -18,4 +18,4 @@ The model has the ability to learn the behavior of a XOR gate. The XOR gate is d
 | 1  | 0  | 1 |
 | 1  | 1  | 0 |
 
-It is not possible to learn the XOR gate using a single neuron. However, it is possible to learn it using at least 3.
+It is not possible to learn the XOR gate using a single neuron (unless using a different activation function). However, it is possible to learn it using at least 3.
